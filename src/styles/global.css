@@ -1,0 +1,97 @@
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter Italic.ttf') format('truetype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrains Mono.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrains Mono Italic.ttf') format('truetype');
+  font-style: italic;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    --bg-color: rgb(21, 90, 113);
+    --bg-color-darkened: hwb(from var(--bg-color) h w 70);
+    background-color: var(--bg-color);
+    color: white;
+    font-family: 'Outfit', 'Helvetica', sans-serif;
+    font-size: 1.4rem;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+pre, code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: var(--bg-color-darkened);
+    padding: 2px;
+    border-radius: 5px;
+}
+
+a {
+    color: rgb(0, 209, 149);
+    text-decoration: dotted 2px;
+    text-decoration-line: underline;
+}
+
+a:hover {
+    color: white;
+    text-decoration: solid;
+    text-decoration-line: underline;
+}
+
+header {
+    background-color: var(--bg-color-darkened);
+}
+
+nav {
+    padding: 1ch;
+    margin-left: 20%;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+nav * {
+    margin: 0.5ch;
+}
+
+main {
+    margin-top: 2ch;
+    margin-left: 20%;
+    max-width: 60%;
+    flex-grow: 1;
+}
+
+footer {
+    background-color: var(--bg-color-darkened);
+    font-size: 0.7em;
+    text-align: center;
+    padding: 1px;
+}

@@ -1,0 +1,36 @@
+---
+import "@styles/global.css"
+
+const { title } = Astro.props;
+---
+<html lang="en">
+	<head>
+		<title>{title ? `${title} - hackysphere` : "hackysphere"}</title>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link rel="me" href="https://techhub.social/@hackysphere">
+
+		<meta name="generator" content={Astro.generator} />
+	</head>
+	<body>
+		<header>
+			<nav>
+				<a href="/">home</a>
+				<a href="/blog">blog</a>
+				<a href="/contact">contact</a>
+				<a href="/about">about</a>
+			</nav>
+        </header>
+
+		<main>
+        	<slot />
+		</main>
+
+		<footer>
+            <p>© hcks {new Date().getFullYear()}<br/>
+               website licensed under <a href="https://github.com/hackysphere/pages/blob/main/LICENSE">MIT</a>, content under <a href="https://github.com/hackysphere/pages/blob/main/LICENSE-CONTENT">CC BY 4.0</a></p>
+        </footer>
+	</body>
+</html>
