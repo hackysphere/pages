@@ -1,6 +1,7 @@
 ---
 import "@styles/global.css"
 import type { InferEntrySchema } from "astro:content";
+import TagButton from "./TagButton.astro";
 
 interface Props {
     frontmatter: InferEntrySchema<"blog">;
@@ -19,4 +20,5 @@ const { frontmatter } = Astro.props;
     <!-- written by {frontmatter.author} ∙ --> <!-- currently no second authors -->
     published {frontmatter.pubDate.toISOString().slice(0, 10)}<!-- HACK html no space
 -->{frontmatter.updDate && ` ∙ updated ${frontmatter.updDate.toISOString().slice(0, 10)}`}
+    {frontmatter.tags && frontmatter.tags.map((tag) => <TagButton url={`/blog/tags/${tag}`} tag={tag} />)}
 </p>

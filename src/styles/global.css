@@ -33,6 +33,7 @@ html {
     --bg-color: rgb(21, 90, 113);
     --bg-color-darkened: hwb(from var(--bg-color) h w 70);
     --font-color: white;
+    --tag-color: rgb(0, 135, 184);
     background-color: var(--bg-color);
     color: var(--font-color);
     font-family: 'Outfit', 'Helvetica', sans-serif;
