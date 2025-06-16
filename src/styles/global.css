@@ -32,8 +32,9 @@ html, body {
 html {
     --bg-color: rgb(21, 90, 113);
     --bg-color-darkened: hwb(from var(--bg-color) h w 70);
+    --font-color: white;
     background-color: var(--bg-color);
-    color: white;
+    color: var(--font-color);
     font-family: 'Outfit', 'Helvetica', sans-serif;
     font-size: 1.4rem;
 }
@@ -62,7 +63,7 @@ a {
 }
 
 a:hover {
-    color: white;
+    color: var(--font-color);
     text-decoration: solid;
     text-decoration-line: underline;
 }

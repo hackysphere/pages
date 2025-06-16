@@ -1,0 +1,21 @@
+---
+import "@styles/global.css"
+
+interface Props {
+    link: string;
+    icon: string;
+    text: string;
+}
+
+const { link, icon, text } = Astro.props
+---
+<style>
+    img {
+        height: 1ch;
+        width: 1ch;
+        margin-right: 0.2ch;
+        /* this doesn't support setting different colors for svgs, has to be hardcoded */
+    }
+</style>
+
+<a href={link}><img src={icon} />{text}</a>
