@@ -1,14 +1,19 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import RichPostLink from "@comps/RichPostLink.astro";
+import IconLink from "@comps/IconLink.astro";
+
 import { getCollection } from "astro:content";
 
 const allPosts = (await getCollection("blog")).sort((post1, post2) => post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf())
 ---
 <BaseLayout title="blog">
-    <h1>blog <a href="/blog/rss.xml">(rss)</a></h1>
-    <!-- <a href="/blog/tags">go to tag lookup</a>
-     TODO tags are still incomplete -->
+    <h1>blog ∙
+        <span style="font-size: 0.8em;">
+            <IconLink link="/blog/rss.xml" icon="/icons/icon-rss.svg" text="rss" /> ∙
+            <IconLink link="/blog/tags" icon="/icons/icon-tag.svg" text="tags" />
+        </span>
+    </h1>
 
     {allPosts.length == 0
     ? <p>...there's nothing here (yet!)</p>
