@@ -7,7 +7,7 @@ import { getCollection } from "astro:content";
 
 const allPosts = (await getCollection("blog")).sort((post1, post2) => post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf())
 ---
-<BaseLayout title="blog">
+<BaseLayout title="blog" description="hackysphere's blog">
     <h1>blog ∙
         <span style="font-size: 0.8em;">
             <IconLink link="/blog/rss.xml" icon="/icons/icon-rss.svg" text="rss" /> ∙
