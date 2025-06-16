@@ -1,0 +1,27 @@
+---
+import "@styles/global.css";
+
+interface Props {
+    tag: string,
+    url: string
+}
+
+const { tag, url } = Astro.props;
+---
+<style>
+    a {
+        background-color: var(--bg-color-darkened);
+        border-radius: 10px;
+
+        margin: 0.5ch;
+
+        padding-left: 0.5ch;
+        padding-right: 0.5ch;
+        padding-top: 0.1ch;
+        padding-bottom: 0.1ch;
+
+        color: var(--tag-color);
+    }
+</style>
+
+<a href={url}>{tag}</a>

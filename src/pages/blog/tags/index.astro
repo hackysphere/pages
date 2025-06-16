@@ -1,19 +1,21 @@
 ---
-/* TODO: Incomplete, no description, title, or proper styling */
 import { getCollection } from "astro:content";
+
 import BaseLayout from "@layouts/BaseLayout.astro";
-import BetaNotice from "@comps/BetaNotice.astro";
+import TagButton from "@comps/TagButton.astro";
 
 const allPosts = await getCollection("blog");
-const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+const tags: string[] = [...new Set(
+    allPosts
+        .filter((post) => Array.isArray(post.data.tags))
+        .flatMap((post) => post.data.tags as string[])
+)];
 ---
-<BaseLayout title="">
-    <BetaNotice />
-       
+<BaseLayout title="blog tags" description="blog tags for hackysphere's blog">
     <h1>blog</h1>
     <h2>tag listing</h2>
     {tags.length == 0 || !tags[0]
     ? <p>no blogposts with tags found</p>
-    : tags.map((tag) => <p><a href={`/blog/tags/${tag}`}>{tag}</a></p>)
+    : tags.map((tag) => <TagButton tag={tag} url={`/blog/tags/${tag}`} />)
     }
 </BaseLayout>
