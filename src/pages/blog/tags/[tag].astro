@@ -1,0 +1,27 @@
+---
+/* TODO: Incomplete, no description, title, or proper styling */
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BetaNotice from "@comps/BetaNotice.astro";
+
+export const getStaticPaths = ( async () => {
+    const allPosts = await getCollection("blog");
+    const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+
+    return tags.map((tag) => ({
+        params: {tag},
+        props: {posts: allPosts.filter((post: any) => post.data.tags.includes(tag))}
+    }));
+}) satisfies GetStaticPaths;
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+<BaseLayout>
+    <BetaNotice />
+
+    <h1>blog</h1>
+    <h2>posts for {tag}</h2>
+    {posts.map((post) => <p><a href={`/blog/${post.id}`}>{post.data.title}</a></p>)}
+</BaseLayout>

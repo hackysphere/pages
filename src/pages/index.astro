@@ -1,8 +1,22 @@
 ---
+import BetaNotice from "@comps/BetaNotice.astro";
+import RichPostLink from "@comps/RichPostLink.astro";
+import TestingSection from "@comps/TestingSection.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+const recentPosts = allPosts.sort(
+        (post1, post2) => post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf()
+    ).slice(0, 3);
 ---
-<BaseLayout>
-    <h1>hcks.dev</h1>
-    <p>not much is here yet... maybe check back later?<br/>
-       or check out my <a href="/contact#socials">socials</a>?</p>
+<BaseLayout description="hackysphere's website">
+    <h1 style="text-align: center">hackysphere</h1>
+
+    <h2>hi!</h2>
+    <p>i'm just someone on the internet<br/>
+       welcome to my website!</p>
+    
+    <h2>recent blog posts ∙ view more on the <a href="/blog">blog page</a></h2>
+    {recentPosts.map((post) => <RichPostLink post={post} />)}
 </BaseLayout>

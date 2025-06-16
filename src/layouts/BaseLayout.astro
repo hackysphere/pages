@@ -1,13 +1,20 @@
 ---
 import "@styles/global.css"
+import Image from "astro/components/Image.astro";
 
-const { title } = Astro.props;
+interface Props {
+	title?: string,
+	description?: string
+}
+
+const { title, description } = Astro.props;
 ---
 <html lang="en">
 	<head>
 		<title>{title ? `${title} - hackysphere` : "hackysphere"}</title>
+		{description && <meta name="description" content={description} />}
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		
 		<link href="https://techhub.social/@hackysphere" rel="me">
@@ -19,6 +26,7 @@ const { title } = Astro.props;
 	<body>
 		<header>
 			<nav>
+				<img src="/favicon.png" alt="" style="height: 1rem; width: 1rem; scale: 2; margin-right: 2ch; vertical-align: middle;" />
 				<a href="/">home</a>
 				<a href="/blog">blog</a>
 				<a href="/contact">contact</a>

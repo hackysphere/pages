@@ -94,4 +94,10 @@ footer {
     font-size: 0.7em;
     text-align: center;
     padding: 1px;
+    margin-top: 1ch;
+}
+
+hr {
+    color: white;
+    border-radius: 100%;
 }

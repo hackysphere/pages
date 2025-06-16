@@ -1,0 +1,28 @@
+---
+import "@styles/global.css"
+import type { CollectionEntry } from "astro:content";
+import PostInfo from "./PostInfo.astro";
+
+interface Props {
+    post: CollectionEntry<"blog">
+}
+
+const { post } = Astro.props;
+---
+<style>
+    article {
+        margin: 5px;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: var(--bg-color-darkened);
+    }
+
+    h3 {
+        margin-top: 10px;
+    }
+</style>
+
+<article>
+    <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+    <PostInfo frontmatter={post.data} />
+</article>

@@ -1,0 +1,21 @@
+---
+import "@styles/global.css"
+---
+<style>
+    .status-testing {
+        background: repeating-linear-gradient(
+            45deg,
+            rgb(167, 134, 0),
+            rgb(167, 134, 0) 20px,
+            rgb(98, 78, 0) 20px,
+            rgb(98, 78, 0) 40px
+        );
+    
+    }
+</style>
+
+<div class="status-testing">
+    <h2><b>TESTING!!!</b></h2>
+    {Astro.slots.has('default') && <hr />}
+    <slot />
+</div>

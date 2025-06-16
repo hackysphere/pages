@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "paths": {
       "@pages/*": ["src/pages/*"],
+      "@comps/*": ["src/comps/*"],
       "@layouts/*": ["src/layouts/*"],
       "@styles/*": ["src/styles/*"],
       "@public/*": ["public/*"] // don't use this one, this is just to conform with naming
