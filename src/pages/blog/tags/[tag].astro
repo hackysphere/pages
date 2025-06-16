@@ -25,6 +25,6 @@ const { posts } = Astro.props;
 ---
 <BaseLayout title=`posts with tag ${tag}` description=`posts with tag ${tag} on hackysphere's blog`>
     <h1>blog</h1>
-    <h2>posts for tag {tag}</h2>
+    <h2>posts with tag {tag}</h2>
     {posts.map((post) => <RichPostLink post={post} />)}
 </BaseLayout></RichPostLink>
