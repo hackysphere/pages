@@ -16,7 +16,9 @@ export const getStaticPaths = ( async () => {
 
     return tags.map((tag) => ({
         params: {tag},
-        props: {posts: allPosts.filter((post: any) => Array.isArray(post.data.tags) && post.data.tags.includes(tag))}
+        props: {posts: allPosts
+            .filter((post: any) => Array.isArray(post.data.tags) && post.data.tags.includes(tag))
+            .sort((post1, post2) => post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf())}
     }));
 }) satisfies GetStaticPaths;
 
@@ -27,4 +29,4 @@ const { posts } = Astro.props;
     <h1>blog</h1>
     <h2>posts with tag {tag}</h2>
     {posts.map((post) => <RichPostLink post={post} />)}
-</BaseLayout></RichPostLink>
+</BaseLayout>
