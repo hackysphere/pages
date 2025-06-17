@@ -10,6 +10,14 @@ const recentPosts = allPosts.sort(
         (post1, post2) => post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf()
     ).slice(0, 3);
 ---
+<!-- RSS feed -->
+<link
+    rel="alternate"
+    type="application/rss+xml"
+    title="hackysphere's blog"
+    href={new URL("blog/rss.xml", Astro.site)}
+/>
+
 <BaseLayout description="hackysphere's website">
     <h1 style="text-align: center">hackysphere</h1>
 

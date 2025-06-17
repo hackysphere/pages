@@ -2,7 +2,11 @@ import { getCollection } from 'astro:content';
 import type { APIRoute } from 'astro';
 import rss from '@astrojs/rss';
 
+import MarkdownIt from 'markdown-it';
+import sanitizeHtml from 'sanitize-html';
+
 const posts = await getCollection("blog");
+const parser = new MarkdownIt({html: true});
 
 export const GET: APIRoute = (async (context) => {
   return rss({
@@ -16,7 +20,9 @@ export const GET: APIRoute = (async (context) => {
       link: `/blog/${post.id}/`,
       author: post.data.author,
       categories: post.data.tags,
-      content: post.body,
+      content: sanitizeHtml(parser.render(post.body), {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+      }),
     })),
     customData: `<language>en-us</language>`,
   });
