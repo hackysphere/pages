@@ -1,23 +1,39 @@
 ---
 import "@styles/global.css"
-import Image from "astro/components/Image.astro";
 
 interface Props {
 	title?: string,
-	description?: string
+	description?: string,
+	og_type?: string,
 }
 
-const { title, description } = Astro.props;
+const { title, description, og_type } = Astro.props;
+
+const pageTitle = title ? `${title} - hackysphere` : "hackysphere"
+const pageDesc = description ? description : "hackysphere's website"
 ---
 <html lang="en">
 	<head>
-		<title>{title ? `${title} - hackysphere` : "hackysphere"}</title>
-		{description && <meta name="description" content={description} />}
+		<title>{pageTitle}</title>
 		<meta charset="utf-8" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<meta name="description" content={pageDesc} />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		
 		<link href="https://techhub.social/@hackysphere" rel="me">
+
+		<!-- Open Graph -->
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:locale" content={Astro.currentLocale} />
+		<meta property="og:site_name" content="hackysphere" />
+		{og_type
+		? <meta property="og:type" content={og_type} />
+		: <meta property="og:type" content="website" />
+		}
+		<meta property="og:url" content={Astro.url} />
 
 		<script defer src="https://cloud.umami.is/script.js" data-website-id="43856ab8-d59c-41c8-92c4-7e09b3ad1ecc"></script>
 

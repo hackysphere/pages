@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hcks.dev/sitemap-index.xml

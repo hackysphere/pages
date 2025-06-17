@@ -8,7 +8,12 @@ interface Props {
 
 const { frontmatter } = Astro.props;
 ---
-<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+<meta property="article:published_time" content={frontmatter.pubDate.toISOString()} />
+{frontmatter.updDate && <meta property="article:modified_time" content={frontmatter.updDate.toISOString()} />}
+<meta property="article:author" content={frontmatter.author} />
+{frontmatter.author === "hackysphere" && <meta name="fediverse:creator" content="@hackysphere@techhub.social" />}
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description} og_type="article">
     <h1>{frontmatter.title}</h1>
     {frontmatter.description && <i>{frontmatter.description}</i>}
     <PostInfo frontmatter={frontmatter} />
