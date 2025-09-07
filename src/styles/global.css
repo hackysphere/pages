@@ -48,7 +48,7 @@ body {
 
 code {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9em;
+    font-size: 0.9rem;
 }
 
 pre, p > code {

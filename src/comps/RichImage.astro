@@ -1,0 +1,37 @@
+---
+import "@styles/global.css"
+import { Image } from "astro:assets";
+
+interface Props {
+  src: string,
+  alt: string
+}
+
+const { src, alt } = Astro.props;
+---
+
+<style>
+  figure {
+    background-color: var(--bg-color-darkened);
+    text-align: center;
+    border-radius: 10px;
+    padding: 1ch;
+  }
+
+  img {
+    max-height: 40vh;
+    /* also set max-width when moving over to Image component */
+    object-fit: contain;
+  }
+
+  figcaption {
+    filter: opacity(75%);
+  }
+</style>
+
+<figure>
+  <img src={src} alt={alt} />
+  <!-- <Image src={src} alt={alt} height="800" /> -->
+  <!-- todo actually use astro Image component -->
+  <figcaption>{alt}</figcaption>
+</figure>

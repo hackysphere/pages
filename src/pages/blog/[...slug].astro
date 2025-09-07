@@ -1,6 +1,8 @@
 ---
-import type { GetStaticPaths } from "astro";
 import MarkdownPostLayout from "@layouts/MarkdownPostLayout.astro";
+import RichImage from "@comps/RichImage.astro";
+
+import type { GetStaticPaths } from "astro";
 import { getCollection, render } from "astro:content";
 
 export const getStaticPaths = ( async () => {
@@ -15,5 +17,6 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 <MarkdownPostLayout frontmatter={post.data}>
-    <Content />
+    <!-- NOTE: components: only works with MDX, not MD -->
+    <Content components={{ img: RichImage }} />
 </MarkdownPostLayout>
