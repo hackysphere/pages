@@ -4,10 +4,12 @@ import type { CollectionEntry } from "astro:content";
 import PostInfo from "./PostInfo.astro";
 
 interface Props {
-    post: CollectionEntry<"blog">
+    post: CollectionEntry<"blog">,
+    useh3?: boolean
 }
 
-const { post } = Astro.props;
+const { post, useh3 } = Astro.props;
+const HeaderTag = useh3 ? "h3" : "h2";
 ---
 <style>
     article {
@@ -17,12 +19,12 @@ const { post } = Astro.props;
         background-color: var(--bg-color-darkened);
     }
 
-    h3 {
+    h2, h3 {
         margin-top: 10px;
     }
 </style>
 
 <article>
-    <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+    <HeaderTag><a href={`/blog/${post.id}`}>{post.data.title}</a></HeaderTag>
     <PostInfo frontmatter={post.data} />
 </article>

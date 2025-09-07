@@ -27,6 +27,8 @@ const { posts } = Astro.props;
 ---
 <BaseLayout title=`posts with tag ${tag}` description=`posts with tag ${tag} on hackysphere's blog`>
     <h1>blog</h1>
-    <h2>posts with tag {tag} ∙ <IconLink link=`/blog/tags/${tag}/rss.xml` icon="/icons/icon-rss.svg" text="rss" /></h2>
+    <h2>posts with tag {tag} ∙
+        <!-- rss color is large AA compliant -->
+        <IconLink link=`/blog/tags/${tag}/rss.xml` icon="/icons/icon-rss.svg" text="rss" color="orange" /></h2>
     {posts.map((post) => <RichPostLink post={post} />)}
 </BaseLayout>

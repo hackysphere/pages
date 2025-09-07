@@ -1,28 +1,33 @@
 @font-face {
   font-family: 'Outfit';
+  font-display: swap;
   src: url('/fonts/Outfit.ttf') format('truetype');
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Inter';
+  font-display: swap;
   src: url('/fonts/Inter.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/Inter Italic.ttf') format('truetype');
+  font-display: swap;
   font-style: italic;
-}
+  src: url('/fonts/Inter Italic.ttf') format('truetype');
+} */
 
 @font-face {
   font-family: 'JetBrains Mono';
+  font-display: swap;
   src: url('/fonts/JetBrains Mono.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'JetBrains Mono';
-  src: url('/fonts/JetBrains Mono Italic.ttf') format('truetype');
+  font-display: swap;
   font-style: italic;
+  src: url('/fonts/JetBrains Mono Italic.ttf') format('truetype');
 }
 
 html, body {
@@ -31,9 +36,11 @@ html, body {
 
 html {
     --bg-color: rgb(21, 90, 113);
-    --bg-color-darkened: hwb(from var(--bg-color) h w 70);
+    --bg-color-darkened: rgb(10, 52, 66);
     --font-color: white;
-    --tag-color: rgb(0, 135, 184);
+    --tag-color: rgb(26, 194, 255); /* large AA regular, AA darkened */
+    --info-color: rgb(204, 204, 204); /* AA regular, AAA darkened */
+    --link-color: rgb(0, 230, 165); /* AA regular, AAA darkened */
     background-color: var(--bg-color);
     color: var(--font-color);
     font-family: 'Outfit', 'Helvetica', sans-serif;
@@ -70,7 +77,7 @@ blockquote > p {
 }
 
 a {
-    color: rgb(0, 209, 149);
+    color: var(--link-color);
     text-decoration: dotted 2px;
     text-decoration-line: underline;
 }

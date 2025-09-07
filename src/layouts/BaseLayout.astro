@@ -1,5 +1,6 @@
 ---
 import "@styles/global.css"
+import { Image } from "astro:assets";
 
 interface Props {
 	title?: string,
@@ -35,23 +36,24 @@ const pageDesc = description ? description : "hackysphere's website"
 		}
 		<meta property="og:url" content={Astro.url} />
 
-		<script defer src="https://cloud.umami.is/script.js" data-website-id="43856ab8-d59c-41c8-92c4-7e09b3ad1ecc"></script>
+		<script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="43856ab8-d59c-41c8-92c4-7e09b3ad1ecc"></script>
 
 		<meta name="generator" content={Astro.generator} />
 	</head>
 	<body>
 		<header>
 			<nav>
-				<img src="/favicon.png" alt="" style="height: 1rem; width: 1rem; scale: 2; margin-right: 2ch; vertical-align: middle;" />
+				<Image src="/favicon.png" alt="" width="50" height="50" 
+					style="height: 1rem; width: 1rem; scale: 2; margin-right: 2ch; vertical-align: middle;" />
 				<a href="/">home</a>
 				<a href="/blog">blog</a>
 				<a href="/contact">contact</a>
-				<a href="/about">about</a>
+				<!-- <a href="/about">about</a> -->
 			</nav>
   	</header>
 
 		<main>
-        	<slot />
+      <slot />
 		</main>
 
 		<footer>

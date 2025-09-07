@@ -5,9 +5,10 @@ interface Props {
     link: string;
     icon: string;
     text: string;
+    color?: string;
 }
 
-const { link, icon, text } = Astro.props;
+const { link, icon, text, color } = Astro.props;
 ---
 <style>
     img {
@@ -18,4 +19,4 @@ const { link, icon, text } = Astro.props;
     }
 </style>
 
-<a href={link}><img src={icon} alt=`${text} icon` />{text}</a>
+<a href={link} style=`color: ${color}`><img src={icon} alt=`${text} icon` />{text}</a>

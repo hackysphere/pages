@@ -10,8 +10,9 @@ const allPosts = (await getCollection("blog")).sort((post1, post2) => post2.data
 <BaseLayout title="blog" description="hackysphere's blog">
     <h1>blog ∙
         <span style="font-size: 0.8em;">
-            <IconLink link="/blog/rss.xml" icon="/icons/icon-rss.svg" text="rss" /> ∙
-            <IconLink link="/blog/tags" icon="/icons/icon-tag.svg" text="tags" />
+            <!-- rss color is large AA compliant, tags color is large AA compliant -->
+            <IconLink link="/blog/rss.xml" icon="/icons/icon-rss.svg" text="rss" color="orange" /> ∙
+            <IconLink link="/blog/tags" icon="/icons/icon-tag.svg" text="tags" color="var(--tag-color)" />
         </span>
     </h1>
 
