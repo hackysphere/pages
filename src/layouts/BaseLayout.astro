@@ -1,5 +1,6 @@
 ---
-import "@styles/global.css"
+import "@styles/global.css";
+import "@styles/fonts.css";
 import { Image } from "astro:assets";
 
 interface Props {
@@ -44,7 +45,7 @@ const pageDesc = description ? description : "hackysphere's website"
 		<header>
 			<nav>
 				<Image src="/favicon.png" alt="" width="50" height="50" 
-					style="height: 1rem; width: 1rem; scale: 2; margin-right: 2ch; vertical-align: middle;" />
+					style="height: 1em; width: 1em; scale: 2; margin-right: 1em; vertical-align: middle;" />
 				<a href="/">home</a>
 				<a href="/blog">blog</a>
 				<a href="/contact">contact</a>

@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Outfit';
+  font-display: swap;
+  src: url('/fonts/Outfit.ttf') format('truetype');
+}
+
+/* @font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  src: url('/fonts/Inter.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  font-style: italic;
+  src: url('/fonts/Inter Italic.ttf') format('truetype');
+} */
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-display: swap;
+  src: url('/fonts/JetBrains Mono.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-display: swap;
+  font-style: italic;
+  src: url('/fonts/JetBrains Mono Italic.ttf') format('truetype');
+}
