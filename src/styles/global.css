@@ -46,15 +46,27 @@ body {
     flex-direction: column;
 }
 
-pre, code {
+code {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.9em;
 }
 
-code {
-    background-color: var(--bg-color-darkened);
+pre, p > code {
     padding: 2px;
     border-radius: 5px;
+}
+
+p > code, blockquote {
+    background-color: var(--bg-color-darkened);
+}
+
+blockquote {
+    border-left: 2px solid white;
+    margin-left: 2ch;
+}
+
+blockquote > p {
+    padding: 0.5rem;
 }
 
 a {
@@ -102,4 +114,21 @@ footer {
 hr {
     color: white;
     border-radius: 100%;
+}
+
+table {
+    border: 2px solid white;
+    background-color: var(--bg-color-darkened);
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    border: 2px solid white;
+}
+
+td {
+    border: 2px solid gray;
+    background-color: var(--bg-color);
 }
