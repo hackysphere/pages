@@ -13,16 +13,18 @@ export const GET: APIRoute = (async (context) => {
     title: 'hackysphere\'s blog',
     description: 'blog posts from hackysphere',
     site: context.site ?? 'http://localhost:4321',
-    items: posts.map((post) => ({
-      title: post.data.title,
-      pubDate: post.data.pubDate,
-      description: post.data.description,
-      link: `/blog/${post.id}/`,
-      author: post.data.author,
-      categories: post.data.tags,
-      content: sanitizeHtml(parser.render(post.body), {
-        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
-      }),
+    items: posts
+      .sort((post1, post2) => post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf())
+      .map((post) => ({
+        title: post.data.title,
+        pubDate: post.data.pubDate,
+        description: post.data.description,
+        link: `/blog/${post.id}/`,
+        author: post.data.author,
+        categories: post.data.tags,
+        content: sanitizeHtml(parser.render(post.body as string), {
+          allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+        }),
     })),
     customData: `<language>en-us</language>`,
   });

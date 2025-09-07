@@ -4,20 +4,20 @@ import { getCollection } from "astro:content";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 import RichPostLink from "@comps/RichPostLink.astro";
+import IconLink from "@comps/IconLink.astro";
 
 export const getStaticPaths = ( async () => {
     const allPosts = await getCollection("blog");
     const tags = [...new Set(
         allPosts
         .filter((post) => Array.isArray(post.data.tags))
-        .flatMap((post) => post.data.tags)
+        .flatMap((post) => post.data.tags as string[])
     )];
-    console.log(tags);
 
     return tags.map((tag) => ({
         params: {tag},
         props: {posts: allPosts
-            .filter((post: any) => Array.isArray(post.data.tags) && post.data.tags.includes(tag))
+            .filter((post) => post.data.tags?.includes(tag))
             .sort((post1, post2) => post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf())}
     }));
 }) satisfies GetStaticPaths;
@@ -27,6 +27,6 @@ const { posts } = Astro.props;
 ---
 <BaseLayout title=`posts with tag ${tag}` description=`posts with tag ${tag} on hackysphere's blog`>
     <h1>blog</h1>
-    <h2>posts with tag {tag}</h2>
+    <h2>posts with tag {tag} ∙ <IconLink link=`/blog/tags/${tag}/rss.xml` icon="/icons/icon-rss.svg" text="rss" /></h2>
     {posts.map((post) => <RichPostLink post={post} />)}
 </BaseLayout>
