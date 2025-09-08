@@ -16,7 +16,9 @@
     "@types/markdown-it": "^14.1.2",
     "@types/sanitize-html": "^2.16.0",
     "astro": "^5.13.5",
+    "fontaine": "^0.6.0",
     "markdown-it": "^14.1.0",
-    "sanitize-html": "^2.17.0"
+    "sanitize-html": "^2.17.0",
+    "sharp": "^0.34.3"
   }
 }

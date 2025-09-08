@@ -11,7 +11,7 @@ html {
     --link-color: rgb(0, 230, 165); /* AA regular, AAA darkened */
     background-color: var(--bg-color);
     color: var(--font-color);
-    font-family: 'Outfit', 'Helvetica', sans-serif;
+    font-family: 'Outfit', 'Inter', 'Helvetica', 'Arial', system-ui, sans-serif;
     font-size: 1.4rem;
 }
 
@@ -22,7 +22,7 @@ body {
 }
 
 code {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
     font-size: 0.9em;
 }
 

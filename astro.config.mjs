@@ -1,8 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
+import { FontaineTransform } from 'fontaine';
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,4 +24,16 @@ export default defineConfig({
       page !== "https://hcks.dev/404/" &&
       page !== "https://hcks.dev/migrate/"
   }), mdx()],
+
+  // this should fix lighthouse CLS fonts, but I'm too tired to set this up right now
+  /* vite: {
+    plugins: [
+      FontaineTransform.vite({
+        fallbacks: {
+          "Outfit": ["Helvetica", "Arial"],
+          "JetBrains Mono": ["Roboto Mono"]
+        }
+      })
+    ]
+  } */
 });
