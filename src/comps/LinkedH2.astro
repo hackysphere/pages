@@ -1,0 +1,24 @@
+---
+import "@styles/global.css"
+
+interface Props {
+  id: string
+}
+
+const { id } = Astro.props;
+---
+<style>
+  a {
+    text-decoration: none;
+    display: none;
+  }
+
+  h2:hover > a {
+    display: inline;
+  }
+</style>
+
+<h2 id={id}>
+  { id !== "footnote-label" && <a href={`#${id}`}>#</a> }
+  <slot />
+</h2>

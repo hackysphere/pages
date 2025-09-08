@@ -1,6 +1,7 @@
 ---
 import MarkdownPostLayout from "@layouts/MarkdownPostLayout.astro";
 import RichImage from "@comps/RichImage.astro";
+import LinkedH2 from "@comps/LinkedH2.astro";
 
 import type { GetStaticPaths } from "astro";
 import { getCollection, render } from "astro:content";
@@ -18,5 +19,5 @@ const { Content } = await render(post);
 ---
 <MarkdownPostLayout frontmatter={post.data}>
     <!-- NOTE: components: only works with MDX, not MD -->
-    <Content components={{ img: RichImage }} />
+    <Content components={{ img: RichImage, h2: LinkedH2 }} />
 </MarkdownPostLayout>
