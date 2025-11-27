@@ -21,8 +21,7 @@ export default defineConfig({
 
   integrations: [sitemap({
     filter: (page) =>
-      page !== "https://hcks.dev/404/" &&
-      page !== "https://hcks.dev/migrate/"
+      page !== "https://hcks.dev/404/"
   }), mdx()],
 
   // this should fix lighthouse CLS fonts, but I'm too tired to set this up right now

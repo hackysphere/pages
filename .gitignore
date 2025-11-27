@@ -23,6 +23,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# delete these later
+# local only files
 TODO
 src/pages/test-md/*
