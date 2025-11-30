@@ -33,5 +33,6 @@ const { src, alt } = Astro.props;
   <img src={src} alt={alt} />
   <!-- <Image src={src} alt={alt} height="800" /> -->
   <!-- todo actually use astro Image component -->
+  <!-- FIXME: this breaks when using typescript aliases? -->
   <figcaption>{alt}</figcaption>
 </figure>

@@ -9,6 +9,7 @@
       "@comps/*": ["src/comps/*"],
       "@layouts/*": ["src/layouts/*"],
       "@styles/*": ["src/styles/*"],
+      "@assets/*": ["src/assets/*"],
       "@public/*": ["public/*"], // don't use this one, this is just to conform with naming
       "@src/*": ["src/*"] // REALLY don't use this one
     }

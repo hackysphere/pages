@@ -1,0 +1,98 @@
+---
+title: "making snake-game"
+description: "aka \"learning\" fullstack webdev"
+pubDate: 2025-12-05
+tags: ["development", "game", "opensource"]
+---
+*This game is actually not my idea, instead it's taken from a video that I watched a very long time ago*
+
+Some time ago, I wanted to make a "simple" game of snake that people could play at the same time. I heavily underestimated what "simple" meant, however, and so I tried making this game two times before finally finishing it with this third attempt.
+
+***
+
+## attempts 1 and 2
+At first, I tried making the entire game only in client code, and make an external database control the game state. I ended up choosing Firebase Realtime Database because:
+* it has a GB/month cap instead of requests/day (I was worried I would hit the limits quickly)
+* it was free
+* it had security rules to control access (though I never ended up implementing them)
+* I did not know that Supabase existed yet
+
+So, after making a new project in Firebase, I started setting up the game logic and UI. I didn't go for a framework like Svelte, because I wanted to make the whole game in vanilla JS, which ended up causing me some problems.  
+
+Since I didn't use npm or Vite yet, I was stuck using Firebase through a JS script, which got confusing, and I didn't yet know how to properly use async/await and Promises, so I gave up on the first two attempts pretty quickly.  
+
+Being fully client-side, the game also would have needed to update the board state for the next move on a client, and that meant choosing a client semi-randomly through timeouts, updating the database, and hoping that nothing broke or any conflicts happened.  
+
+Here's a list of more problems that would have come up if I actually managed to make the game this way:
+* security rules would need to be set up, but clients need to update the state and they are all anonymous
+* anyone can really easily put arbitrary content in the database
+* the free version of RTDB is limited to 100 simultaneous connections, so only 100 people can play at once
+* a rouge client can modify the board state easily
+
+After the second attempt, I stopped working on the game completely for around a year.
+
+***
+
+## attempt 3
+In the meantime, I worked on some other personal projects and set up this blog. Using Astro taught me more about how to use Node and the whole tooling ecosystem being Javascript, so when I started on this project again, I felt a bit more ready.  
+
+I actually started off by doing the game client-side only and through RTDB, and I managed to finish it (you can still find commits from that in the repo)! However, I didn't feel okay with publishing something with direct database access anymore, so I started to learn the very basics of Node and Express to make a somewhat functional API for sending votes and getting the game state. This made the game require a server, but now the game state couldn't be forged.  
+
+Making the Express server also came with its problems, like setting up CORS headers so that browsers would be able to query the server, and setting up reverse proxy "support" so that you don't need to expose your server IP, and you can instead use Cloudflare or something like Caddy.  
+
+## setting up docker containers
+By this point I could call the project complete, as you could just pull the repo and run some commands to start up the server.  
+
+I had a *tiny* problem, though: my VPS was mostly delegated to serving Docker containers, and I didn't want to start running Node apps alongside what I had set up. I also had Caddy (my reverse proxy) running as a Docker container without host networking, so I wouldn't be able to proxy the game easily.  
+
+So, I started figuring out Docker containers and CI to solve this.  
+
+I needed to make Express serve the Vite frontend now, because I didn't want to have to run two seperate containers just for this simple game. That went mostly fine, and even made developing "production" changes easier!  
+
+One of the different things in this project is that I am using pnpm instead of npm, and Node comes with npm by default. The base Docker image for Node comes with npm only, so I had to figure out how to get it working with pnpm. Luckilly, the pnpm documentation had a base Dockerfile that I could use that mostly worked.  
+
+Using the base Dockerfile caused issues, though. Because it downloads pnpm through Corepack (a system in Node for managing package managers), it wanted to check for pnpm updates **even when the image was built.** It would also just fail to start if you didn't happen to have a network connection. I ended up using npm for the final `serve` command, because I didn't want to have to install pnpm into the image as well.  
+
+### environment variable troubles
+
+I also had to make environment variables configurable via Docker in order to make the image not need to be rebuilt each time. Before this, I was using a .env file for the Vite frontend configuration, and the server had some of it's settings set in a JS file.  
+
+The .env file had the API url set for the frontend, which meant that every time the Docker image was built, the API url was set at buildtime, not runtime, due to how Vite worked. I ended up getting rid of the setting altogether, as it was there because I was originally planning to run the backend and frontend on different domains, which changed when I made the server also serve the frontend.
+
+I tried to move the server configuration to the .env file, however I also wanted it to not be *required*, in the case I was using Docker. Node has a flag for this, `--env-file-if-exists`, which seemingly worked file for the production commands. However, it sometimes made the development server not start up, seemingly due to it using the `--watch` flag. I just ended up making two seperate `serve` commands, one for using the env file, and one for not.  
+
+After all that, I was finally able to use Docker containers that could be shared and configured using environment variables.
+
+***
+
+## reflection
+Even though this project was a first for me in some areas, I was very underprepared. I should have learned more about the APIs and JS features I was using, which would have saved a substantial amount of time. It would have also made it easier to organize code and implement new features.  
+
+Nevertheless, I am still happy with the final result, and I do want to try to make more web apps now.
+
+***
+
+## play the game
+{/* there is no image because RichImage is broken */}
+
+Want to check out the game? Go to https://snake.hcks.dev
+
+It's more interesting when you have multiple people playing, because then votes have a larger effect.  
+
+You can also self-host the game if you want, and I have written some documentation on it [on GitHub](https://github.com/hackysphere/snake-game).  
+
+The game is licensed under MIT, because I don't have any real plans for this game as it was made mostly as a learning exercise.
+
+## contributing
+You can contribute with fixes or changes, but please keep in mind that I probably won't be able to help much, as I'm mostly done with this project.  
+
+If you do have an issue, you can make an issue [on GitHub](https://github.com/hackysphere/snake-game/issues/new), but help will be limited due to me not spending much time on this anymore.  
+
+Most of this isn't written in a way that I would like, and some parts are still not very understandable and confusing, so consider this a hobby project.
+
+## future plans
+I don't have any future plans with this game. I did originally want to add websocket support so that a single connection could be used instead of repeated polling, but I don't think it's worth the time anymore.  
+
+I am planning to learn Svelte and SvelteKit some time soon, so I might post some of my first projects on GitHub as well. (and maybe even write a blog post about them??) 
+
+I also have a few projects that I want to share in the next year, but I'm not able to right now due to other tasks and bugs I need to fix.
