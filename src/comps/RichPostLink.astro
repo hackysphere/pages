@@ -21,10 +21,17 @@ const HeaderTag = useh3 ? "h3" : "h2";
 
     h2, h3 {
         margin-top: 0.3em;
+        margin-bottom: 0;
+    }
+
+    .description {
+        margin-top: 0.5em;
+        color: rgba(255, 255, 255, 0.87);
     }
 </style>
 
 <article>
     <HeaderTag><a href={`/blog/${post.id}`}>{post.data.title}</a></HeaderTag>
+    <p class="description"><i>{post.data.description}</i></p>
     <PostInfo frontmatter={post.data} />
 </article>

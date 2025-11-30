@@ -15,7 +15,7 @@ const { frontmatter } = Astro.props;
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description} og_type="article">
     <h1>{frontmatter.title}</h1>
-    {frontmatter.description && <i>{frontmatter.description}</i>}
+    <i>{frontmatter.description}</i>
     <PostInfo frontmatter={frontmatter} />
     <!-- {frontmatter.image && <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />}
     not doing pictures yet... -->
