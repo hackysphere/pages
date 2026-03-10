@@ -1,10 +1,10 @@
 ---
-import "@styles/global.css"
+import "@styles/global.css";
 import type { InferEntrySchema } from "astro:content";
 import TagButton from "./TagButton.astro";
 
 interface Props {
-    frontmatter: InferEntrySchema<"blog">;
+	frontmatter: InferEntrySchema<"blog">;
 }
 
 const { frontmatter } = Astro.props;

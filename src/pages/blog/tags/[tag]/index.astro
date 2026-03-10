@@ -6,20 +6,27 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import RichPostLink from "@comps/RichPostLink.astro";
 import IconLink from "@comps/IconLink.astro";
 
-export const getStaticPaths = ( async () => {
-    const allPosts = await getCollection("blog");
-    const tags = [...new Set(
-        allPosts
-        .filter((post) => Array.isArray(post.data.tags))
-        .flatMap((post) => post.data.tags as string[])
-    )];
+export const getStaticPaths = (async () => {
+	const allPosts = await getCollection("blog");
+	const tags = [
+		...new Set(
+			allPosts
+				.filter((post) => Array.isArray(post.data.tags))
+				.flatMap((post) => post.data.tags as string[]),
+		),
+	];
 
-    return tags.map((tag) => ({
-        params: {tag},
-        props: {posts: allPosts
-            .filter((post) => post.data.tags?.includes(tag))
-            .sort((post1, post2) => post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf())}
-    }));
+	return tags.map((tag) => ({
+		params: { tag },
+		props: {
+			posts: allPosts
+				.filter((post) => post.data.tags?.includes(tag))
+				.sort(
+					(post1, post2) =>
+						post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf(),
+				),
+		},
+	}));
 }) satisfies GetStaticPaths;
 
 const { tag } = Astro.params;

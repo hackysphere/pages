@@ -5,11 +5,13 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import TagButton from "@comps/TagButton.astro";
 
 const allPosts = await getCollection("blog");
-const tags: string[] = [...new Set(
-    allPosts
-        .filter((post) => Array.isArray(post.data.tags))
-        .flatMap((post) => post.data.tags as string[])
-)];
+const tags: string[] = [
+	...new Set(
+		allPosts
+			.filter((post) => Array.isArray(post.data.tags))
+			.flatMap((post) => post.data.tags as string[]),
+	),
+];
 ---
 <BaseLayout title="blog tags" description="blog tags for hackysphere's blog">
     <h1>blog</h1>

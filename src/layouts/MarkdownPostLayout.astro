@@ -3,7 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import PostInfo from "@comps/PostInfo.astro";
 import type { InferEntrySchema } from "astro:content";
 interface Props {
-    frontmatter: InferEntrySchema<"blog">;
+	frontmatter: InferEntrySchema<"blog">;
 }
 
 const { frontmatter } = Astro.props;

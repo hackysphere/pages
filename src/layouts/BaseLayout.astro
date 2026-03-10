@@ -4,15 +4,15 @@ import "@styles/fonts.css";
 import { Image } from "astro:assets";
 
 interface Props {
-	title?: string,
-	description?: string,
-	og_type?: string,
+	title?: string;
+	description?: string;
+	og_type?: string;
 }
 
 const { title, description, og_type } = Astro.props;
 
-const pageTitle = title ? `${title} - hackysphere` : "hackysphere"
-const pageDesc = description ? description : "hackysphere's website"
+const pageTitle = title ? `${title} - hackysphere` : "hackysphere";
+const pageDesc = description ? description : "hackysphere's website";
 ---
 <html lang="en">
 	<head>

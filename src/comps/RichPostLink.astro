@@ -1,11 +1,11 @@
 ---
-import "@styles/global.css"
+import "@styles/global.css";
 import type { CollectionEntry } from "astro:content";
 import PostInfo from "./PostInfo.astro";
 
 interface Props {
-    post: CollectionEntry<"blog">,
-    useh3?: boolean
+	post: CollectionEntry<"blog">;
+	useh3?: boolean;
 }
 
 const { post, useh3 } = Astro.props;

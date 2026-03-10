@@ -6,9 +6,12 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const allPosts = await getCollection("blog");
-const recentPosts = allPosts.sort(
-        (post1, post2) => post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf()
-    ).slice(0, 3);
+const recentPosts = allPosts
+	.sort(
+		(post1, post2) =>
+			post2.data.pubDate.valueOf() - post1.data.pubDate.valueOf(),
+	)
+	.slice(0, 3);
 ---
 <!-- RSS feed -->
 <link

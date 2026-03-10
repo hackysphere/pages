@@ -1,31 +1,33 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
-import { FontaineTransform } from 'fontaine';
+import { FontaineTransform } from "fontaine";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://hcks.dev/",
+	site: "https://hcks.dev/",
 
-  i18n: {
-      locales: ["en"],
-      defaultLocale: "en"
-  },
+	i18n: {
+		locales: ["en"],
+		defaultLocale: "en",
+	},
 
-  markdown: {
-    shikiConfig: {
-      theme: "catppuccin-mocha"
-    }
-  },
+	markdown: {
+		shikiConfig: {
+			theme: "catppuccin-mocha",
+		},
+	},
 
-  integrations: [sitemap({
-    filter: (page) =>
-      page !== "https://hcks.dev/404/"
-  }), mdx()],
+	integrations: [
+		sitemap({
+			filter: (page) => page !== "https://hcks.dev/404/",
+		}),
+		mdx(),
+	],
 
-  // this should fix lighthouse CLS fonts, but I'm too tired to set this up right now
-  /* vite: {
+	// this should fix lighthouse CLS fonts, but I'm too tired to set this up right now
+	/* vite: {
     plugins: [
       FontaineTransform.vite({
         fallbacks: {
